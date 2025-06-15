@@ -1,0 +1,42 @@
+server:
+  port: 8080
+spring:
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  profiles:
+    active: dev
+  datasource:
+    druid:
+      driver-class-name: ${xzx.datasource.driver-class-name}
+      url: jdbc:mysql://${xzx.datasource.host}:${xzx.datasource.port}/${xzx.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${xzx.datasource.username}
+      password: ${xzx.datasource.password}
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*
+  type-aliases-package: org.xzx.pojo
+knife4j:
+  enable: true
+  openapi:
+    title: x通讯接口文档
+    description: "x通讯接口文档"
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - org.xzx.controller
+xchat:
+  jwt:
+    SecretKey: "abcdefghijklmnopqrstuvwxyzxyznycicstabcabcdefghyjklmnopqrstuvwxyz"
+    LoseTime: 3600000
+    TokenName: "capacity"
+
+upload:
+   dir: "./x_file"
